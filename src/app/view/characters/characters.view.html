@@ -1,1 +1,11 @@
-<p>characters works!</p>
+<div class="container">
+  @for (item of characters; track $index) {
+  <mat-card class="container__card" appearance="outlined">
+    <mat-card-header>
+      <img mat-card-avatar class="container__header-image" src={{item.image}} alt="Photo"/>
+      <mat-card-title>{{item.name}}</mat-card-title>
+      <mat-card-subtitle>{{item.species}}</mat-card-subtitle>
+    </mat-card-header>
+  </mat-card>
+  }
+</div>

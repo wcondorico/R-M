@@ -1,0 +1,20 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100px;
+
+  .container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+
+    &__card {
+      max-width: 400px;
+    }
+
+    &__header-image {
+      background-size: cover;
+    }
+  }
+}

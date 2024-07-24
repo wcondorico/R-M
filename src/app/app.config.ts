@@ -6,11 +6,13 @@ import localeEsPE from '@angular/common/locales/es-PE';
 import { routes } from './app.routes';
 import { CharactersFacade } from './aplication/facade/characters.facade';
 import { CharactersHttp } from './infraestructure/chcaracters.http';
+import { provideHttpClient } from '@angular/common/http';
 
 registerLocaleData(localeEsPE, 'es-PE');
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideHttpClient(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     { provide: LOCALE_ID, useValue: 'es-PE' },
