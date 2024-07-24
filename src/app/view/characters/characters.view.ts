@@ -1,31 +1,53 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { CharactersFacade } from '../../aplication/facade/characters.facade';
-import { Results } from '../../core/interfaces/characters';
+import { MatIconModule } from '@angular/material/icon';
 
+import { CharactersFacade } from '../../aplication/facade/characters.facade';
+import { Characters } from '../../core/interfaces/characters';
 
 @Component({
   selector: 'characters',
   standalone: true,
-  imports: [MatCardModule, MatButtonModule],
+  imports: [MatCardModule, MatButtonModule, MatIconModule],
   templateUrl: './characters.view.html',
-  styleUrl: './characters.view.scss'
+  styleUrl: './characters.view.scss',
 })
-export class CharactersView implements OnInit{
-  private readonly charactersService: CharactersFacade = inject(CharactersFacade);
+export class CharactersView implements OnInit {
+  private readonly charactersService: CharactersFacade =
+    inject(CharactersFacade);
 
-  characters!: Results[]
+  characters!: Characters;
+  lengthData!: number;
+  page: number = 1;
 
-  ngOnInit(){
-    this.getCharacters()
+  ngOnInit() {
+    this.getCharacters();
   }
 
   getCharacters() {
-    this.charactersService.getCharacters().subscribe(list => {
-      this.characters = list.results;
-      console.log(this.characters)
-    })
+    this.charactersService.getCharacters().subscribe((list) => {
+      this.characters = list;
+      this.lengthData = list.info.count;
+      console.log(this.characters);
+    });
   }
 
+  prevPage() {
+    if (this.characters.info.prev)
+      this.charactersService
+        .getCharactersPage(this.characters.info.prev)
+        .subscribe((list) => {
+          this.characters = list;
+        });
+    if (this.page > 1) this.page--;
+  }
+
+  nextPage() {
+    if (this.characters.info.next)
+      this.charactersService
+        .getCharactersPage(this.characters.info.next)
+        .subscribe((list) => (this.characters = list));
+    if (this.page < this.characters.info.pages) this.page++;
+  }
 }

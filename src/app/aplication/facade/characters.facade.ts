@@ -9,4 +9,8 @@ export class CharactersFacade {
   getCharacters() {
     return this.characters.getCharacters();
   }
+
+  getCharactersPage(param: string) {
+    return this.characters.getCharactersPage(param);
+  }
 }

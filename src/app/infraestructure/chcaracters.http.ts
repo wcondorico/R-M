@@ -14,4 +14,8 @@ url = `${environment.api}`
     return this.http.get<Characters>(this.url)
   }
 
+  getCharactersPage(param: string): Observable<Characters> {
+    return this.http.get<Characters>(param)
+  }
+
 }

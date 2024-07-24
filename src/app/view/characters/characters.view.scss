@@ -5,16 +5,40 @@
   padding: 100px;
 
   .container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
 
-    &__card {
-      max-width: 400px;
+    .list {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 20px;
+
+      &__card {
+        max-width: 400px;
+
+        &--image {
+          background-size: cover;
+        }
+      }
     }
 
-    &__header-image {
-      background-size: cover;
+    .paginator {
+      display: flex;
+      justify-content: end;
+      gap: 20px;
+
+      &__label {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+
+        font-size: 14px;
+        margin-left: 8px;
+        min-width: 120px;
+        background-color: rgb(213, 204, 255);
+      }
     }
   }
 }

@@ -1,11 +1,24 @@
 <div class="container">
-  @for (item of characters; track $index) {
-  <mat-card class="container__card" appearance="outlined">
-    <mat-card-header>
-      <img mat-card-avatar class="container__header-image" src={{item.image}} alt="Photo"/>
-      <mat-card-title>{{item.name}}</mat-card-title>
-      <mat-card-subtitle>{{item.species}}</mat-card-subtitle>
-    </mat-card-header>
-  </mat-card>
-  }
+
+  <div class="list">
+    @for (item of characters.results; track $index) {
+    <mat-card class="list__card" appearance="outlined">
+      <mat-card-header>
+        <img mat-card-avatar class="list__card--image" src="{{item.image}}" alt="Photo" />
+        <mat-card-title>{{item.name}}</mat-card-title>
+        <mat-card-subtitle>{{item.species}}</mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+    }
+  </div>
+
+  <div class="paginator">
+    <div class="paginator__label">{{page}} of {{characters.info.pages}}</div>
+    <button mat-fab aria-label="Previus page" (click)="prevPage()">
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+    <button mat-fab aria-label="Next Page" (click)="nextPage()">
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+  </div>
 </div>
