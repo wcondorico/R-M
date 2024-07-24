@@ -14,8 +14,20 @@
       grid-template-columns: repeat(4, 1fr);
       grid-gap: 20px;
 
+      &>a {
+        text-decoration: none;
+        color: inherit;
+      }
+
       &__card {
         max-width: 400px;
+        cursor: pointer;
+
+        &>:hover {
+          background-color: rgb(199, 216, 241);
+          border-radius: 12px;
+          height: 100%;
+        }
 
         &--image {
           background-size: cover;

@@ -2,6 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { RouterModule } from '@angular/router';
 
 import { CharactersFacade } from '../../aplication/facade/characters.facade';
 import { Characters } from '../../core/interfaces/characters';
@@ -9,16 +10,14 @@ import { Characters } from '../../core/interfaces/characters';
 @Component({
   selector: 'characters',
   standalone: true,
-  imports: [MatCardModule, MatButtonModule, MatIconModule],
+  imports: [MatCardModule, MatButtonModule, MatIconModule, RouterModule],
   templateUrl: './characters.view.html',
   styleUrl: './characters.view.scss',
 })
 export class CharactersView implements OnInit {
-  private readonly charactersService: CharactersFacade =
-    inject(CharactersFacade);
+  private readonly charactersService: CharactersFacade = inject(CharactersFacade);
 
   characters!: Characters;
-  lengthData!: number;
   page: number = 1;
 
   ngOnInit() {
@@ -28,8 +27,6 @@ export class CharactersView implements OnInit {
   getCharacters() {
     this.charactersService.getCharacters().subscribe((list) => {
       this.characters = list;
-      this.lengthData = list.info.count;
-      console.log(this.characters);
     });
   }
 

@@ -1,0 +1,28 @@
+:host {
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+  box-sizing: border-box;
+  .card {
+    width: 800px;
+
+    &__content {
+      display: flex;
+      flex-wrap: wrap;
+
+      &--image {
+        width: 400px;
+        border-radius: 20px;
+      }
+
+      &--detail {
+        max-width: 526px;
+        padding: 0 20px;
+      }
+    }
+  }
+
+
+
+
+}

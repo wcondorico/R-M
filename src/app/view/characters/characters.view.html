@@ -2,13 +2,15 @@
 
   <div class="list">
     @for (item of characters.results; track $index) {
-    <mat-card class="list__card" appearance="outlined">
-      <mat-card-header>
-        <img mat-card-avatar class="list__card--image" src="{{item.image}}" alt="Photo" />
-        <mat-card-title>{{item.name}}</mat-card-title>
-        <mat-card-subtitle>{{item.species}}</mat-card-subtitle>
-      </mat-card-header>
-    </mat-card>
+      <a [routerLink]="['/character-detail/', item.id]">
+        <mat-card class="list__card" appearance="outlined">
+          <mat-card-header>
+            <img mat-card-avatar class="list__card--image" src="{{item.image}}" alt="Photo" />
+            <mat-card-title>{{item.name}}</mat-card-title>
+            <mat-card-subtitle>{{item.species}}</mat-card-subtitle>
+          </mat-card-header>
+        </mat-card>
+      </a>
     }
   </div>
 

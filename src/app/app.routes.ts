@@ -15,7 +15,7 @@ export const routes: Routes = [
         loadComponent: () => import('./view/characters/characters.view').then(c => c.CharactersView)
       },
       {
-        path: 'character-detail',
+        path: 'character-detail/:id',
         loadComponent: () => import('./view/character-detail/character-detail.view').then(c => c.CharacterDetailView)
       }
     ],

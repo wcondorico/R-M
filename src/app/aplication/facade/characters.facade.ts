@@ -13,4 +13,8 @@ export class CharactersFacade {
   getCharactersPage(param: string) {
     return this.characters.getCharactersPage(param);
   }
+
+  getCharacterDetail(id: number) {
+    return this.characters.getCharacterDetail(id);
+  }
 }
