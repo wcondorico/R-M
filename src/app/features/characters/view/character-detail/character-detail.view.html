@@ -40,8 +40,8 @@
 
 <section class="notes">
 
-  <div class="notes__text">
-    <textarea type="area" placeholder="Ingresa una nota"></textarea>
+  <div class="notes__text" [formGroup]="textNote">
+    <textarea type="area" formControlName="textNoteArea" placeholder="Ingresa una nota"></textarea>
     <button mat-fab extended (click)="addNote()">
       <mat-icon>add</mat-icon>
       Agregar nota
@@ -49,11 +49,11 @@
   </div>
 
   <div class="notes__list">
-    @for (item of listNotes; track $index) {
+    @for (item of listNotes; track item; let i = $index) {
       <mat-card appearance="raised" class="notes__card">
         <mat-card-header>
-          <span>{{item}} adasdasdasd asdasdasddasdsadas adsas as</span>
-          <i (click)="deleteNote()"><mat-icon matSuffix>close</mat-icon></i>
+          <span>{{item}}</span>
+          <i (click)="deleteNote(i)"><mat-icon matSuffix>close</mat-icon></i>
         </mat-card-header>
       </mat-card>
     }

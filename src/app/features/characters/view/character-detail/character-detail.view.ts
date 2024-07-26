@@ -10,22 +10,27 @@ import { CharactersFacade } from '../../aplication/facade/characters.facade';
 import { Results } from '../../core/interfaces/characters';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'character-detail',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatInputModule, MatCardModule, MatListModule, MatIconModule],
+  imports: [CommonModule, MatButtonModule, MatInputModule, MatCardModule, MatListModule, MatIconModule, ReactiveFormsModule],
   templateUrl: './character-detail.view.html',
   styleUrl: './character-detail.view.scss',
 })
 export class CharacterDetailView implements OnInit {
   private readonly activatedRoute: ActivatedRoute = inject(ActivatedRoute);
-  private readonly charactersService: CharactersFacade =
-    inject(CharactersFacade);
+  private readonly charactersService: CharactersFacade = inject(CharactersFacade);
+  private readonly fb: FormBuilder = inject(FormBuilder)
+
+  textNote: FormGroup = this.fb.group({
+    textNoteArea: ['']
+  });
 
   id!: number;
   data!: Results;
-  listNotes: string[] = ["tittle 1", "tittle 2", "tittle 3", "tittle 1", "tittle 2", "tittle 3"];
+  listNotes: string[] = [];
 
   ngOnInit() {
     this.activatedRoute.params
@@ -36,11 +41,15 @@ export class CharacterDetailView implements OnInit {
       });
   }
 
-  deleteNote() {
-
+  addNote() {
+    const text = this.textNote.get('textNoteArea')?.value.trim();
+    if (text) {
+      this.listNotes.push(text);
+      this.textNote.reset();
+    }
   }
 
-  addNote() {
-
+  deleteNote(index: number) {
+    this.listNotes.splice(index, 1)
   }
 }
