@@ -16,5 +16,5 @@ import { CharacterDetailView } from './features/characters/view/character-detail
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-
+  
 }

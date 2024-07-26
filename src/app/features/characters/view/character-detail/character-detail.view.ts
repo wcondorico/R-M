@@ -8,11 +8,13 @@ import {MatListModule} from '@angular/material/list';
 
 import { CharactersFacade } from '../../aplication/facade/characters.facade';
 import { Results } from '../../core/interfaces/characters';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'character-detail',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatCardModule, MatListModule],
+  imports: [CommonModule, MatButtonModule, MatInputModule, MatCardModule, MatListModule, MatIconModule],
   templateUrl: './character-detail.view.html',
   styleUrl: './character-detail.view.scss',
 })
@@ -23,6 +25,7 @@ export class CharacterDetailView implements OnInit {
 
   id!: number;
   data!: Results;
+  listNotes: string[] = ["tittle 1", "tittle 2", "tittle 3", "tittle 1", "tittle 2", "tittle 3"];
 
   ngOnInit() {
     this.activatedRoute.params
@@ -31,5 +34,13 @@ export class CharacterDetailView implements OnInit {
         this.data = character;
         console.log(this.data);
       });
+  }
+
+  deleteNote() {
+
+  }
+
+  addNote() {
+
   }
 }

@@ -1,30 +1,34 @@
-<mat-card class="card" appearance="outlined">
-  <mat-card-header>
-    <img mat-card-avatar src="{{data.image}}" alt="Photo">
-    <mat-card-title>{{data.name}}</mat-card-title>
-    <mat-card-subtitle>{{data.species}}</mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-content class="card__content">
-    <img mat-card-image class="card__content--image" src="{{data.image}}" alt="Photo">
-    <div class="card__content--detail">
-      <mat-list>
-        <mat-list-item>
-          <span matListItemTitle><strong>Status</strong></span>
-          <span matListItemLine>{{data.status}}</span>
-        </mat-list-item>
-        <mat-list-item>
-          <span matListItemTitle><strong>Gender</strong></span>
-          <span matListItemLine>{{data.gender}}</span>
-        </mat-list-item>
-        <mat-list-item>
-          <span matListItemTitle><strong>Origin</strong></span>
-          <span matListItemLine>{{data.origin.name}}</span>
-        </mat-list-item>
-        <mat-list-item>
-          <span matListItemTitle><strong>Location</strong></span>
-          <span matListItemLine>{{data.location.name}}</span>
-        </mat-list-item>
-        <mat-list-item>
+<section class="card" >
+
+  <mat-card appearance="outlined">
+    <mat-card-header>
+      <img mat-card-avatar src="{{data.image}}" alt="Photo">
+      <mat-card-title>{{data.name}}</mat-card-title>
+      <mat-card-subtitle>{{data.species}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content class="content">
+      <div class="content__image">
+        <img mat-card-image src="{{data.image}}" alt="Photo">
+      </div>
+      <div class="content__detail">
+        <mat-list>
+          <mat-list-item>
+            <span matListItemTitle><strong>Status</strong></span>
+            <span matListItemLine>{{data.status}}</span>
+          </mat-list-item>
+          <mat-list-item>
+            <span matListItemTitle><strong>Gender</strong></span>
+            <span matListItemLine>{{data.gender}}</span>
+          </mat-list-item>
+          <mat-list-item>
+            <span matListItemTitle><strong>Origin</strong></span>
+            <span matListItemLine>{{data.origin.name}}</span>
+          </mat-list-item>
+          <mat-list-item>
+            <span matListItemTitle><strong>Location</strong></span>
+            <span matListItemLine>{{data.location.name}}</span>
+          </mat-list-item>
+          <mat-list-item>
           <span matListItemTitle><strong>Created</strong></span>
           <span matListItemLine>{{data.created | date:'longDate'}}</span>
         </mat-list-item>
@@ -32,3 +36,27 @@
     </div>
   </mat-card-content>
 </mat-card>
+</section>
+
+<section class="notes">
+
+  <div class="notes__text">
+    <textarea type="area" placeholder="Ingresa una nota"></textarea>
+    <button mat-fab extended (click)="addNote()">
+      <mat-icon>add</mat-icon>
+      Agregar nota
+    </button>
+  </div>
+
+  <div class="notes__list">
+    @for (item of listNotes; track $index) {
+      <mat-card appearance="raised" class="notes__card">
+        <mat-card-header>
+          <span>{{item}} adasdasdasd asdasdasddasdsadas adsas as</span>
+          <i (click)="deleteNote()"><mat-icon matSuffix>close</mat-icon></i>
+        </mat-card-header>
+      </mat-card>
+    }
+  </div>
+
+</section>
