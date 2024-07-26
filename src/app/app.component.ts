@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { CharactersView } from './view/characters/characters.view';
-import { CharacterDetailView } from './view/character-detail/character-detail.view';
+
+import { CharactersView } from './features/characters/view/characters/characters.view';
+import { CharacterDetailView } from './features/characters/view/character-detail/character-detail.view';
 
 @Component({
   selector: 'app-root',

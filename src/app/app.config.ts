@@ -3,11 +3,11 @@ import { provideRouter } from '@angular/router';
 import { registerLocaleData } from '@angular/common';
 import {provideAnimations} from '@angular/platform-browser/animations';
 import localeEsPE from '@angular/common/locales/es-PE';
+import { provideHttpClient } from '@angular/common/http';
 
 import { routes } from './app.routes';
-import { CharactersFacade } from './aplication/facade/characters.facade';
-import { CharactersHttp } from './infraestructure/chcaracters.http';
-import { provideHttpClient } from '@angular/common/http';
+import { CharactersFacade } from './features/characters/aplication/facade/characters.facade';
+import { CharactersHttp } from './features/characters/infraestructure/http/chcaracters.http';
 
 registerLocaleData(localeEsPE, 'es-PE');
 

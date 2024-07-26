@@ -7,16 +7,20 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'characters',
+        redirectTo: 'sign-in',
         pathMatch: 'full'
       },
       {
+        path: 'sign-in',
+        loadComponent: () => import('./features/auth/view/sign-in/sign-in.view').then(c => c.SignInView)
+      },
+      {
         path: 'characters',
-        loadComponent: () => import('./view/characters/characters.view').then(c => c.CharactersView)
+        loadComponent: () => import('./features/characters/view/characters/characters.view').then(c => c.CharactersView)
       },
       {
         path: 'character-detail/:id',
-        loadComponent: () => import('./view/character-detail/character-detail.view').then(c => c.CharacterDetailView)
+        loadComponent: () => import('./features/characters/view/character-detail/character-detail.view').then(c => c.CharacterDetailView)
       }
     ],
   },

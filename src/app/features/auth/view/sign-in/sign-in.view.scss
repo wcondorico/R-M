@@ -1,0 +1,86 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100px;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgb(187, 202, 228);
+    border-radius: 20px;
+    width: 1000px;
+    height: 520px;
+    position: relative;
+
+    .login {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      align-items: center;
+
+      * {
+        width: 100%;
+      }
+
+      &__icons {
+        display: flex;
+        justify-content: space-around;
+        font-size: 40px;
+        margin-bottom: 25px;
+      }
+
+      &__name {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+
+      >span {
+        margin-bottom: 14px;
+      }
+
+      >button {
+        width: 200px;
+        height: 40px;
+        font-size: 20px;
+        margin-top: 5px ;
+        margin-bottom: 15px;
+        border-radius: 10px;
+        border: none;
+        background-color: rgb(119, 120, 201);
+        color: rgb(235, 235, 235);
+        cursor: pointer;
+
+        &:hover {
+          background-color: rgb(90, 91, 155);
+        }
+      }
+    }
+
+    .sign-up {
+      position: absolute;
+      padding: 10px 30px;
+      width: 50%;
+      height: 100%;
+      transition: all 0.6s ease-in-out;
+      left: 0;
+      top: 0;
+      box-sizing: border-box;
+    }
+
+    .sign-in {
+      position: absolute;
+      padding: 10px 30px;
+      width: 50%;
+      height: 100%;
+      transition: all 0.6s ease-in-out;
+      right: 0;
+      top: 0;
+      box-sizing: border-box;
+    }
+  }
+}
+

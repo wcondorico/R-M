@@ -1,9 +1,9 @@
 import { Injectable, inject } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
-import { CharactersRepository } from "../domain/repository/characters.repository";
+import { CharactersRepository } from "../../domain/repository/characters.repository";
 import { Observable } from "rxjs";
-import { Characters, Results } from "../core/interfaces/characters";
-import { environment } from "../../environments/environment";
+import { Characters, Results } from "../../core/interfaces/characters";
+import { environment } from "../../../../../environments/environment";
 
 @Injectable()
 export class CharactersHttp extends CharactersRepository {
