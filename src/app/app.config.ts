@@ -1,13 +1,11 @@
-import { ApplicationConfig, LOCALE_ID, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { registerLocaleData } from '@angular/common';
-import {provideAnimations} from '@angular/platform-browser/animations';
-import localeEsPE from '@angular/common/locales/es-PE';
 import { provideHttpClient } from '@angular/common/http';
+import localeEsPE from '@angular/common/locales/es-PE';
+import { ApplicationConfig, LOCALE_ID, provideZoneChangeDetection } from '@angular/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
 
 import { routes } from './app.routes';
-import { CharactersFacade } from './features/characters/aplication/facade/characters.facade';
-import { CharactersHttp } from './features/characters/infraestructure/http/chcaracters.http';
 
 registerLocaleData(localeEsPE, 'es-PE');
 
@@ -17,10 +15,6 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes, withComponentInputBinding()),
-    { provide: LOCALE_ID, useValue: 'es-PE' },
-    {
-      provide: CharactersFacade,
-      useClass: CharactersHttp
-    }
+    { provide: LOCALE_ID, useValue: 'es-PE' }
   ]
 };
