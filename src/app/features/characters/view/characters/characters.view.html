@@ -1,26 +1,28 @@
 <div class="container">
 
+  @if (characters$ | async; as characters) {
   <div class="list">
-    @for (item of characters.results; track $index) {
-      <a [routerLink]="['/character-detail/', item.id]">
-        <mat-card class="list__card" appearance="outlined">
-          <mat-card-header>
-            <img mat-card-avatar class="list__card--image" src="{{item.image}}" alt="Photo" />
-            <mat-card-title>{{item.name}}</mat-card-title>
-            <mat-card-subtitle>{{item.species}}</mat-card-subtitle>
-          </mat-card-header>
-        </mat-card>
-      </a>
+    @for (character of characters.results ; track character.id) {
+    <a [routerLink]="['/character-detail/', character.id]">
+      <mat-card class="list__card" appearance="outlined">
+        <mat-card-header>
+          <img mat-card-avatar class="list__card--image" src="{{character.image}}" alt="Photo" />
+          <mat-card-title class="list__card--tittle">{{character.name}}</mat-card-title>
+          <mat-card-subtitle>{{character.species}}</mat-card-subtitle>
+        </mat-card-header>
+      </mat-card>
+    </a>
     }
   </div>
 
   <div class="paginator">
-    <div class="paginator__label">{{page}} of {{characters.info.pages}}</div>
-    <button mat-fab aria-label="Previus page" (click)="prevPage()">
+    <div class="paginator__label">{{ page() }} of {{characters.info.pages}}</div>
+    <button mat-fab aria-label="Previus page" [disabled]="page() == 1" (click)="prevPage(characters.info)">
       <mat-icon>chevron_left</mat-icon>
     </button>
-    <button mat-fab aria-label="Next Page" (click)="nextPage()">
+    <button mat-fab aria-label="Next Page" [disabled]="page() == characters.info.pages" (click)="nextPage(characters.info)">
       <mat-icon>chevron_right</mat-icon>
     </button>
   </div>
+  }
 </div>

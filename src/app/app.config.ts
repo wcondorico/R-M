@@ -1,5 +1,5 @@
 import { ApplicationConfig, LOCALE_ID, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { registerLocaleData } from '@angular/common';
 import {provideAnimations} from '@angular/platform-browser/animations';
 import localeEsPE from '@angular/common/locales/es-PE';
@@ -16,12 +16,11 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     provideHttpClient(),
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes),
+    provideRouter(routes, withComponentInputBinding()),
     { provide: LOCALE_ID, useValue: 'es-PE' },
     {
       provide: CharactersFacade,
       useClass: CharactersHttp
     }
   ]
-
 };

@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { switchMap } from 'rxjs';
+import { Component, inject, input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatListModule} from '@angular/material/list';
@@ -20,25 +19,20 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './character-detail.view.scss',
 })
 export class CharacterDetailView implements OnInit {
-  private readonly activatedRoute: ActivatedRoute = inject(ActivatedRoute);
   private readonly charactersService: CharactersFacade = inject(CharactersFacade);
   private readonly fb: FormBuilder = inject(FormBuilder)
+
+  id = input.required<number>();
+  characterDetail$!: Observable<Results>;
 
   textNote: FormGroup = this.fb.group({
     textNoteArea: ['']
   });
 
-  id!: number;
-  data!: Results;
   listNotes: string[] = [];
 
   ngOnInit() {
-    this.activatedRoute.params
-      .pipe(switchMap(({ id }) => this.charactersService.getCharacterDetail(id)))
-      .subscribe( character => {
-        this.data = character;
-        console.log(this.data);
-      });
+    this.characterDetail$ = this.charactersService.getCharacterDetail(this.id());
   }
 
   addNote() {

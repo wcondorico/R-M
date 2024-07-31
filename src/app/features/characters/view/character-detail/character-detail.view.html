@@ -1,41 +1,42 @@
-<section class="card" >
-
-  <mat-card appearance="outlined">
-    <mat-card-header>
-      <img mat-card-avatar src="{{data.image}}" alt="Photo">
-      <mat-card-title>{{data.name}}</mat-card-title>
-      <mat-card-subtitle>{{data.species}}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content class="content">
-      <div class="content__image">
-        <img mat-card-image src="{{data.image}}" alt="Photo">
-      </div>
-      <div class="content__detail">
-        <mat-list>
-          <mat-list-item>
-            <span matListItemTitle><strong>Status</strong></span>
-            <span matListItemLine>{{data.status}}</span>
-          </mat-list-item>
-          <mat-list-item>
-            <span matListItemTitle><strong>Gender</strong></span>
-            <span matListItemLine>{{data.gender}}</span>
-          </mat-list-item>
-          <mat-list-item>
-            <span matListItemTitle><strong>Origin</strong></span>
-            <span matListItemLine>{{data.origin.name}}</span>
-          </mat-list-item>
-          <mat-list-item>
-            <span matListItemTitle><strong>Location</strong></span>
-            <span matListItemLine>{{data.location.name}}</span>
-          </mat-list-item>
-          <mat-list-item>
-          <span matListItemTitle><strong>Created</strong></span>
-          <span matListItemLine>{{data.created | date:'longDate'}}</span>
-        </mat-list-item>
-      </mat-list>
-    </div>
-  </mat-card-content>
-</mat-card>
+<section class="card">
+  @if (characterDetail$ | async; as characterDetail) {
+    <mat-card appearance="outlined">
+      <mat-card-header>
+        <img mat-card-avatar src="{{characterDetail.image}}" alt="Photo">
+        <mat-card-title>{{characterDetail.name}}</mat-card-title>
+        <mat-card-subtitle>{{characterDetail.species}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content class="content">
+        <div class="content__image">
+          <img mat-card-image src="{{characterDetail.image}}" alt="Photo">
+        </div>
+        <div class="content__detail">
+          <mat-list>
+            <mat-list-item>
+              <span matListItemTitle><strong>Status</strong></span>
+              <span matListItemLine>{{characterDetail.status}}</span>
+            </mat-list-item>
+            <mat-list-item>
+              <span matListItemTitle><strong>Gender</strong></span>
+              <span matListItemLine>{{characterDetail.gender}}</span>
+            </mat-list-item>
+            <mat-list-item>
+              <span matListItemTitle><strong>Origin</strong></span>
+              <span matListItemLine>{{characterDetail.origin.name}}</span>
+            </mat-list-item>
+            <mat-list-item>
+              <span matListItemTitle><strong>Location</strong></span>
+              <span matListItemLine>{{characterDetail.location.name}}</span>
+            </mat-list-item>
+            <mat-list-item>
+              <span matListItemTitle><strong>Created</strong></span>
+              <span matListItemLine>{{characterDetail.created | date:'longDate'}}</span>
+            </mat-list-item>
+          </mat-list>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  }
 </section>
 
 <section class="notes">

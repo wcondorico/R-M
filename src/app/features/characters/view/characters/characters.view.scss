@@ -19,20 +19,27 @@
       &>a {
         text-decoration: none;
         color: inherit;
-      }
-
-      &__card {
-        max-width: 400px;
-        cursor: pointer;
 
         &>:hover {
           background-color: rgb(199, 216, 241);
           border-radius: 12px;
-          height: 100%;
         }
+      }
+
+      &__card {
+        width: 350px;
+        padding: 8px;
 
         &--image {
           background-size: cover;
+        }
+
+        &--tittle {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: block;
+          width: 230px;
         }
       }
     }
