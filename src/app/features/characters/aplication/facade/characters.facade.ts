@@ -6,8 +6,8 @@ export class CharactersFacade {
 
   characters = inject(CharactersRepository)
 
-  getCharacters() {
-    return this.characters.getCharacters();
+  getCharacters(page: number) {
+    return this.characters.getCharacters(page);
   }
 
   getCharactersPage(param: string) {

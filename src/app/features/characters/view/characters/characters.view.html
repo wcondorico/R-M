@@ -3,7 +3,7 @@
   @if (characters$ | async; as characters) {
   <div class="list">
     @for (character of characters.results ; track character.id) {
-    <a [routerLink]="['/character-detail/', character.id]">
+    <a [routerLink]="['../character-detail/', character.id]">
       <mat-card class="list__card" appearance="outlined">
         <mat-card-header>
           <img mat-card-avatar class="list__card--image" src="{{character.image}}" alt="Photo" />
@@ -17,11 +17,17 @@
 
   <div class="paginator">
     <div class="paginator__label">{{ page() }} of {{characters.info.pages}}</div>
+    <button mat-fab aria-label="Previus page" (click)="firstPage(1)">
+      <mat-icon>keyboard_double_arrow_left</mat-icon>
+    </button>
     <button mat-fab aria-label="Previus page" [disabled]="page() == 1" (click)="prevPage(characters.info)">
       <mat-icon>chevron_left</mat-icon>
     </button>
     <button mat-fab aria-label="Next Page" [disabled]="page() == characters.info.pages" (click)="nextPage(characters.info)">
       <mat-icon>chevron_right</mat-icon>
+    </button>
+    <button mat-fab aria-label="Next Page" (click)="lastPage(characters.info.pages)">
+      <mat-icon>keyboard_double_arrow_right</mat-icon>
     </button>
   </div>
   }

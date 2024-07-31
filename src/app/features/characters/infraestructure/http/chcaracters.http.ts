@@ -10,8 +10,8 @@ export class CharactersHttp extends CharactersRepository {
 private readonly http: HttpClient = inject(HttpClient)
 url = `${environment.api}`
 
-  getCharacters(): Observable<Characters> {
-    return this.http.get<Characters>(this.url);
+  getCharacters(page: number): Observable<Characters> {
+    return this.http.get<Characters>(`${this.url}/?page=${page}`);
   }
 
   getCharactersPage(param: string): Observable<Characters> {

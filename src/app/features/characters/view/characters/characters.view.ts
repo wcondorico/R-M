@@ -24,7 +24,7 @@ import { Characters, Info } from '../../core/interfaces/characters';
 })
 export class CharactersView {
   private readonly charactersService: CharactersFacade = inject(CharactersFacade);
-  characters$: Observable<Characters> = this.charactersService.getCharacters();
+  characters$: Observable<Characters> = this.charactersService.getCharacters(1);
 
   page = signal<number>(1);
 
@@ -32,13 +32,23 @@ export class CharactersView {
     if (!info.prev) return;
 
     this.characters$ = this.charactersService.getCharactersPage(info.prev);
-    this.page.update(value => value - 1);
+    this.page.update(v => v - 1);
   }
 
   nextPage(info: Info) {
     if (!info.next) return;
 
     this.characters$ = this.charactersService.getCharactersPage(info.next);
-    this.page.update(value => value + 1);
+    this.page.update(v => v + 1);
+  }
+
+  firstPage(page: number) {
+    this.characters$ = this.charactersService.getCharacters(page);
+    this.page.update(v => v = 1)
+  }
+
+  lastPage(page: number) {
+    this.characters$ = this.charactersService.getCharacters(page);
+    this.page.update(v => v = page)
   }
 }
