@@ -24,7 +24,7 @@ import { Characters, Info } from '../../core/interfaces/characters';
     MatRadioModule,
     RouterModule,
     FormsModule,
-    AsyncPipe
+    AsyncPipe,
   ],
   templateUrl: './characters.view.html',
   styleUrl: './characters.view.scss',
@@ -34,7 +34,8 @@ export class CharactersView {
 
   characters$: Observable<Characters> = this.charactersService.getCharacters(1);
   page = signal<number>(1);
-  apiUrl: string = environment.api
+  apiUrl: string = environment.api;
+  searchByNameInput: string = '';
 
   filterGender!: string;
   filterStatus!: string;
@@ -45,28 +46,34 @@ export class CharactersView {
 
   prevPage(info: Info) {
     if (!info.prev) return;
-
     this.characters$ = this.charactersService.getCharactersPage(info.prev);
     this.page.update((v) => v - 1);
   }
 
   nextPage(info: Info) {
     if (!info.next) return;
-
     this.characters$ = this.charactersService.getCharactersPage(info.next);
     this.page.update((v) => v + 1);
   }
 
   firstPage(page: number) {
-    this.apiUrl == environment.api ? this.characters$ = this.charactersService.getCharactersPage(`${this.apiUrl}?&page=${page}`)
-    : this.characters$ = this.charactersService.getCharactersPage(`${this.apiUrl}&page=${page}`);
+    this.changeFinalPage(page);
     this.page.update((v) => (v = 1));
   }
 
   lastPage(page: number) {
-    this.apiUrl == environment.api ? this.characters$ = this.charactersService.getCharactersPage(`${this.apiUrl}?&page=${page}`)
-    : this.characters$ = this.charactersService.getCharactersPage(`${this.apiUrl}&page=${page}`);
+    this.changeFinalPage(page);
     this.page.update((v) => (v = page));
+  }
+
+  changeFinalPage(page: number){
+    this.apiUrl == environment.api
+    ? (this.characters$ = this.charactersService.getCharactersPage(
+        `${this.apiUrl}?&page=${page}`
+      ))
+    : (this.characters$ = this.charactersService.getCharactersPage(
+        `${this.apiUrl}&page=${page}`
+      ));
   }
 
   applyFilters() {
@@ -81,7 +88,10 @@ export class CharactersView {
     if (this.filterStatus) {
       query += `&status=${this.filterStatus}`;
     }
-
+    if (this.searchByNameInput) {
+      query += `&name=${this.searchByNameInput}`;
+    }
+    
     this.apiUrl = `${environment.api}?${query}`;
     this.characters$ = this.charactersService.getCharactersPage(this.apiUrl);
     this.page.update((v) => (v = 1));
@@ -93,6 +103,13 @@ export class CharactersView {
     this.filterSpecie = '';
     this.filterStatus = '';
     this.page.update((v) => (v = 1));
-    this.apiUrl = environment.api
+    this.apiUrl = environment.api;
+    this.searchByNameInput = '';
+  }
+
+  searchByName() {
+    setTimeout(() => {
+      this.applyFilters();
+    }, 2000);
   }
 }

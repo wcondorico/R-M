@@ -1,6 +1,6 @@
 <div class="container">
   <section class="container__filters">
-    <h3>Rick and Morty Characters</h3>
+    <h2>Personajes de Rick Y Morty</h2>
     <div class="radio">
       <h6>Género:</h6>
       <mat-radio-group class="radio__group" [(ngModel)]="filterGender">
@@ -38,6 +38,18 @@
   </section>
 
   <section class="container__characters">
+    <div class="search">
+      <div class="search__logo">
+        <mat-icon fontIcon="search" class="search__logo--icon"></mat-icon>
+      </div>
+      <input type="text" class="search__text" placeholder="Buscar por nombre" (keyup)="searchByName()" [(ngModel)]="searchByNameInput" >
+      <div class="search__button">
+        <button mat-fab extended (click)="applyFilters()">
+          Buscar
+        </button>
+      </div>
+    </div>
+
     @if (characters$ | async; as characters) {
     <div class="list">
       @for (character of characters.results ; track character.id) {
