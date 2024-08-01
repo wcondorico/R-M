@@ -5,61 +5,125 @@
   padding: 100px;
 
   .container {
+    width: 1900px;
     display: flex;
-    flex-direction: column;
-    width: 1500px;
-    gap: 50px;
 
-    .list {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: repeat(5, 1fr);
-      grid-gap: 20px;
-      height: 500px;
+    &__filters {
+      width: 340px;
+      padding: 30px 30px;
+      margin-right: 50px;
+      border-radius: 25px;
+      display: flex;
+      flex-direction: column;
+      background-color: rgb(149, 160, 160);
 
-      &>a {
-        text-decoration: none;
-        color: inherit;
+      & > h3 {
+        color: rgb(243, 243, 243);
+        font-weight: 500;
+      }
 
-        &>:hover {
-          background-color: rgb(199, 216, 241);
-          border-radius: 12px;
+      .radio {
+        margin-bottom: 15px;
+        background-color: rgb(168, 182, 182);
+        padding: 10px 20px;
+        border-radius: 20px;
+
+        &__group {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+
+        }
+
+        &__button {
+          margin-bottom: 5px;
+          background-color: rgb(168, 182, 182);
+          border: 20px;
+          width: 100%;
+          &:hover {
+            background-color: rgb(153, 165, 165);
+          }
+
+          span {
+            font-size: 18px;
+            line-height: 2;
+            font-weight: 500;
+          }
         }
       }
 
-      &__card {
-        width: 350px;
-        padding: 8px;
+      .buttons {
+        display: flex;
+        gap: 10px;
 
-        &--image {
-          background-size: cover;
-        }
-
-        &--tittle {
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          display: block;
-          width: 230px;
+        & > button {
+          font-size: 20px;
         }
       }
     }
 
-    .paginator {
+    &__characters {
       display: flex;
-      justify-content: end;
-      gap: 20px;
+      flex-direction: column;
+      background-color: rgb(201, 212, 212);
+      width: 1400px;
+      padding: 40px;
+      border-radius: 25px;
+      gap: 30px;
 
-      &__label {
+      .list {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+        grid-gap: 20px;
+        width: 100%;
+        height: 100%;
+
+        & > a {
+          text-decoration: none;
+          color: inherit;
+
+          & > :hover {
+            background-color: rgb(199, 216, 241);
+            border-radius: 12px;
+          }
+        }
+
+        &__card {
+          width: 330px;
+          padding: 8px;
+
+          &--image {
+            background-size: cover;
+          }
+
+          &--tittle {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: block;
+            width: 224px;
+            padding-right: 0;
+          }
+        }
+      }
+
+      .paginator {
         display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 10px;
+        justify-content: end;
+        gap: 20px;
 
-        font-size: 14px;
-        margin-left: 8px;
-        min-width: 120px;
-        background-color: rgb(213, 204, 255);
+        &__label {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 10px;
+
+          font-size: 14px;
+          margin-left: 8px;
+          min-width: 120px;
+          background-color: rgb(213, 204, 255);
+        }
       }
     }
   }

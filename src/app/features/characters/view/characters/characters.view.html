@@ -1,34 +1,76 @@
 <div class="container">
+  <section class="container__filters">
+    <h3>Rick and Morty Characters</h3>
+    <div class="radio">
+      <h6>Género:</h6>
+      <mat-radio-group class="radio__group" [(ngModel)]="filterGender">
+        @for (gender of gender; track gender) {
+        <mat-radio-button  class="radio__button" [value]="gender"><span>{{gender}}</span></mat-radio-button>
+        }
+      </mat-radio-group>
+    </div>
 
-  @if (characters$ | async; as characters) {
-  <div class="list">
-    @for (character of characters.results ; track character.id) {
-    <a [routerLink]="['../character-detail/', character.id]">
-      <mat-card class="list__card" appearance="outlined">
-        <mat-card-header>
-          <img mat-card-avatar class="list__card--image" src="{{character.image}}" alt="Photo" />
-          <mat-card-title class="list__card--tittle">{{character.name}}</mat-card-title>
-          <mat-card-subtitle>{{character.species}}</mat-card-subtitle>
-        </mat-card-header>
-      </mat-card>
-    </a>
+    <div class="radio">
+      <h6>Estado:</h6>
+      <mat-radio-group class="radio__group" [(ngModel)]="filterStatus">
+        @for (status of status; track status) {
+        <mat-radio-button class="radio__button" [value]="status"><span>{{status}}</span></mat-radio-button>
+        }
+      </mat-radio-group>
+    </div>
+
+    <div class="radio">
+      <h6>Especie:</h6>
+      <mat-radio-group class="radio__group" [(ngModel)]="filterSpecie">
+        @for (specie of specie; track specie) {
+        <mat-radio-button class="radio__button" [value]="specie"><span>{{specie}}</span></mat-radio-button>
+        }
+      </mat-radio-group>
+    </div>
+    <div class="buttons">
+      <button mat-fab extended (click)="applyFilters()">
+        Aplicar filtros
+      </button>
+      <button mat-fab extended (click)="cleanFilters()">
+        Limpiar filtros
+      </button>
+    </div>
+  </section>
+
+  <section class="container__characters">
+    @if (characters$ | async; as characters) {
+    <div class="list">
+      @for (character of characters.results ; track character.id) {
+      <a [routerLink]="['../character-detail/', character.id]">
+        <mat-card class="list__card" appearance="outlined">
+          <mat-card-header>
+            <img mat-card-avatar class="list__card--image" src="{{character.image}}" alt="Photo" />
+            <mat-card-title class="list__card--tittle">{{character.name}}</mat-card-title>
+            <mat-card-subtitle>{{character.species}}</mat-card-subtitle>
+          </mat-card-header>
+        </mat-card>
+      </a>
+      }
+    </div>
+
+    <div class="paginator">
+      <div class="paginator__label">
+        Page {{ page() }} of {{characters.info.pages}}
+      </div>
+      <button mat-fab aria-label="Previus page" (click)="firstPage(1)">
+        <mat-icon>keyboard_double_arrow_left</mat-icon>
+      </button>
+      <button mat-fab aria-label="Previus page" [disabled]="page() == 1" (click)="prevPage(characters.info)">
+        <mat-icon>chevron_left</mat-icon>
+      </button>
+      <button mat-fab aria-label="Next Page" [disabled]="page() == characters.info.pages"
+        (click)="nextPage(characters.info)">
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+      <button mat-fab aria-label="Next Page" (click)="lastPage(characters.info.pages)">
+        <mat-icon>keyboard_double_arrow_right</mat-icon>
+      </button>
+    </div>
     }
-  </div>
-
-  <div class="paginator">
-    <div class="paginator__label">{{ page() }} of {{characters.info.pages}}</div>
-    <button mat-fab aria-label="Previus page" (click)="firstPage(1)">
-      <mat-icon>keyboard_double_arrow_left</mat-icon>
-    </button>
-    <button mat-fab aria-label="Previus page" [disabled]="page() == 1" (click)="prevPage(characters.info)">
-      <mat-icon>chevron_left</mat-icon>
-    </button>
-    <button mat-fab aria-label="Next Page" [disabled]="page() == characters.info.pages" (click)="nextPage(characters.info)">
-      <mat-icon>chevron_right</mat-icon>
-    </button>
-    <button mat-fab aria-label="Next Page" (click)="lastPage(characters.info.pages)">
-      <mat-icon>keyboard_double_arrow_right</mat-icon>
-    </button>
-  </div>
-  }
+  </section>
 </div>
