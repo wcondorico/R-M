@@ -34,15 +34,15 @@ export class CharactersView {
 
   characters$: Observable<Characters> = this.charactersService.getCharacters(1);
   page = signal<number>(1);
-  apiUrl: string = environment.api;
-  searchByNameInput: string = '';
+  apiUrl = signal<string>(environment.api);
+  searchByNameInput = signal<string>('');
 
-  filterGender!: string;
-  filterStatus!: string;
-  filterSpecie!: string;
-  gender: string[] = ['Male', 'Female', 'Unknown'];
-  status: string[] = ['Alive', 'Dead', 'Unknown'];
-  specie: string[] = ['Alien', 'Human'];
+  filterGender = signal<string>(''); 
+  filterStatus = signal<string>('');
+  filterSpecie = signal<string>('');
+  readonly gender: string[] = ['Male', 'Female', 'Unknown'];
+  readonly status: string[] = ['Alive', 'Dead', 'Unknown'];
+  readonly specie: string[] = ['Alien', 'Human'];
 
   prevPage(info: Info) {
     if (!info.prev) return;
@@ -58,53 +58,53 @@ export class CharactersView {
 
   firstPage(page: number) {
     this.changeFinalPage(page);
-    this.page.update((v) => (v = 1));
+    this.page.set(1);
   }
 
   lastPage(page: number) {
     this.changeFinalPage(page);
-    this.page.update((v) => (v = page));
+    this.page.set(page);
   }
 
   changeFinalPage(page: number){
-    this.apiUrl == environment.api
+    this.apiUrl() == environment.api
     ? (this.characters$ = this.charactersService.getCharactersPage(
-        `${this.apiUrl}?&page=${page}`
+        `${this.apiUrl()}?&page=${page}`
       ))
     : (this.characters$ = this.charactersService.getCharactersPage(
-        `${this.apiUrl}&page=${page}`
+        `${this.apiUrl()}&page=${page}`
       ));
   }
 
   applyFilters() {
     let query = '';
 
-    if (this.filterGender) {
-      query += `&gender=${this.filterGender}`;
+    if (this.filterGender()) {
+      query += `&gender=${this.filterGender()}`;
     }
     if (this.filterSpecie) {
-      query += `&species=${this.filterSpecie}`;
+      query += `&species=${this.filterSpecie()}`;
     }
     if (this.filterStatus) {
-      query += `&status=${this.filterStatus}`;
+      query += `&status=${this.filterStatus()}`;
     }
     if (this.searchByNameInput) {
-      query += `&name=${this.searchByNameInput}`;
+      query += `&name=${this.searchByNameInput()}`;
     }
-    
-    this.apiUrl = `${environment.api}?${query}`;
-    this.characters$ = this.charactersService.getCharactersPage(this.apiUrl);
-    this.page.update((v) => (v = 1));
+
+    this.apiUrl.set(`${environment.api}?${query}`);
+    this.characters$ = this.charactersService.getCharactersPage(this.apiUrl());
+    this.page.set(1);
   }
 
   cleanFilters() {
     this.characters$ = this.charactersService.getCharacters(1);
-    this.filterGender = '';
-    this.filterSpecie = '';
-    this.filterStatus = '';
+    this.filterGender.set('');
+    this.filterSpecie.set('');
+    this.filterStatus.set('');
     this.page.update((v) => (v = 1));
-    this.apiUrl = environment.api;
-    this.searchByNameInput = '';
+    this.apiUrl.set(environment.api);
+    this.searchByNameInput.set('');
   }
 
   searchByName() {
