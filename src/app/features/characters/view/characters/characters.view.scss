@@ -8,11 +8,13 @@
   .admin {
     margin-bottom: 30px;
     width: 1500px;
+    display: flex;
+    gap: 25px;
 
     &__link {
       display: flex;
       justify-content: center;
-      width: 250px;
+      width: 110px;
       padding: 10px;
       background-color: rgb(201, 212, 212);
       border-radius: 10px;
