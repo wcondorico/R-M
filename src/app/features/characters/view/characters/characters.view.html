@@ -1,8 +1,14 @@
+<div class="admin">
+  <a [routerLink]="'../admin'" class="admin__link">
+      Admin
+  </a>
+</div>
+
 <div class="container">
   <section class="container__filters">
-    <h2>Personajes de Rick Y Morty</h2>
+    <h3>Personajes de Rick Y Morty</h3>
     <div class="radio">
-      <h6>Género:</h6>
+      <span class="radio__tittle">Género:</span>
       <mat-radio-group class="radio__group" [(ngModel)]="filterGender">
         @for (gender of gender; track gender) {
         <mat-radio-button  class="radio__button" [value]="gender"><span>{{gender}}</span></mat-radio-button>
@@ -11,7 +17,7 @@
     </div>
 
     <div class="radio">
-      <h6>Estado:</h6>
+      <span>Estado:</span>
       <mat-radio-group class="radio__group" [(ngModel)]="filterStatus">
         @for (status of status; track status) {
         <mat-radio-button class="radio__button" [value]="status"><span>{{status}}</span></mat-radio-button>
@@ -20,7 +26,7 @@
     </div>
 
     <div class="radio">
-      <h6>Especie:</h6>
+      <span>Especie:</span>
       <mat-radio-group class="radio__group" [(ngModel)]="filterSpecie">
         @for (specie of specie; track specie) {
         <mat-radio-button class="radio__button" [value]="specie"><span>{{specie}}</span></mat-radio-button>
@@ -53,12 +59,12 @@
     @if (characters$ | async; as characters) {
     <div class="list">
       @for (character of characters.results ; track character.id) {
-      <a [routerLink]="['../character-detail/', character.id]">
-        <mat-card class="list__card" appearance="outlined">
-          <mat-card-header>
+      <a [routerLink]="['detail/', character.id]">
+        <mat-card appearance="outlined">
+          <mat-card-header class="list__card">
             <img mat-card-avatar class="list__card--image" src="{{character.image}}" alt="Photo" />
             <mat-card-title class="list__card--tittle">{{character.name}}</mat-card-title>
-            <mat-card-subtitle>{{character.species}}</mat-card-subtitle>
+            <mat-card-subtitle class="list__card--subtittle">{{character.species}}</mat-card-subtitle>
           </mat-card-header>
         </mat-card>
       </a>

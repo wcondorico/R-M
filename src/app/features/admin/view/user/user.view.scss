@@ -1,0 +1,14 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+
+  .list {
+    width: 100%;
+    background-color: rgb(201, 212, 212);
+    border-radius: 20px;
+    padding: 30px;
+  }
+}

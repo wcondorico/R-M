@@ -1,0 +1,14 @@
+<div class="container">
+  <section class="container__side">
+    <a [routerLink]="'./users'">
+      <button mat-raised-button>Usuarios</button>
+    </a>
+    <a [routerLink]="'./role'">
+      <button mat-raised-button>Roles</button>
+    </a>
+  </section>
+
+  <section class="container__list">
+    <router-outlet></router-outlet>
+  </section>
+</div>

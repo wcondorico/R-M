@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { CharactersRoutes } from './characters.routes';
+import { charactersRoutes } from './characters.routes';
 import { CharactersFacade } from './aplication/facade/characters.facade';
 import { CharactersHttp } from './infraestructure/http/chcaracters.http';
 
 @NgModule({
   providers: [
-    provideRouter(CharactersRoutes),
+    provideRouter(charactersRoutes),
     {
       provide: CharactersFacade,
       useClass: CharactersHttp

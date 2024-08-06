@@ -10,6 +10,10 @@ export const routes: Routes = [
     loadChildren: () => import('./features/characters/characters.module').then(m => m.CharactersModule)
   },
   {
+    path: 'admin',
+    loadChildren: () => import('./features/admin/admin.module').then(m => m.AdminModule)
+  },
+  {
     path: '',
     redirectTo: 'characters',
     pathMatch: 'full'
