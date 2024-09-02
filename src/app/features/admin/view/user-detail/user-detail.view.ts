@@ -41,14 +41,14 @@ export class UserDetailView implements OnInit {
   private readonly route: ActivatedRoute = inject(ActivatedRoute);
 
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-  readonly roles = signal<string[]>(['Rol_1']);
-  readonly allRoles: string[] = ['Rol_1', 'Rol_2', 'Rol_3', 'Rol_4', 'Rol_5'];
+  readonly rolesSelected = signal<string[]>(['Rol_1']);
+  readonly avaibleRoles = signal<string[]>(['Rol_2', 'Rol_3', 'Rol_4', 'Rol_5']);
   readonly currentRole = signal('');
   readonly filteredRoles = computed(() => {
     const currentRole = this.currentRole().toLowerCase();
     return currentRole
-      ? this.allRoles.filter(role => role.toLowerCase().includes(currentRole))
-      : this.allRoles.slice();
+      ? this.avaibleRoles().filter(role => role.toLowerCase().includes(currentRole))
+      : this.avaibleRoles().slice();
   });
 
   nameFormControl!: FormControl;
@@ -72,29 +72,38 @@ export class UserDetailView implements OnInit {
 
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
-
-    if (value) {
-      this.roles.update((roles) => [...roles, value]);
+    const index = this.avaibleRoles().indexOf(value)
+    if (value && index > 0) {
+      this.rolesSelected.update((roles) => [...roles, value]);
+      this.currentRole.set('');
     }
-
-    this.currentRole.set('');
   }
 
   remove(role: string): void {
-    this.roles.update((roles) => {
+    this.rolesSelected.update((roles) => {
       const index = roles.indexOf(role);
-      if (index < 0) {
-        return roles;
-      }
       roles.splice(index, 1);
       return [...roles];
     });
+
+    this.avaibleRoles.update((roles) => {
+      const index = roles.indexOf(role);
+      roles.push(role);
+      roles.sort();
+      return [...roles];
+    })
+
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    this.roles.update(roles => [...roles, event.option.viewValue]);
+    this.rolesSelected.update(rolesSelected => [...rolesSelected, event.option.viewValue]);
     this.currentRole.set('');
     event.option.deselect();
+    this.avaibleRoles.update((roles) => {
+      const index = roles.indexOf(event.option.value);
+      roles.splice(index, 1);
+      return [...roles];
+    });
   }
 
   saveData(event: MouseEvent) {

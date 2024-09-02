@@ -28,7 +28,7 @@
   <mat-form-field>
     <mat-label>Roles del Usuario</mat-label>
     <mat-chip-grid #chipGrid>
-      @for (role of roles(); track $index) {
+      @for (role of rolesSelected(); track $index) {
         <mat-chip-row (removed)="remove(role)">
           {{role}}
           <button matChipRemove>
@@ -38,9 +38,7 @@
       }
     </mat-chip-grid>
     <input
-      name="currentRole"
       placeholder="Nuevo Rol"
-      #RoleInput
       [(ngModel)]="currentRole"
       [matChipInputFor]="chipGrid"
       [matAutocomplete]="auto"
