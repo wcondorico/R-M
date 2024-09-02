@@ -2,30 +2,8 @@ import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { RouterModule } from '@angular/router';
-
-export interface Data {
-  name: string;
-  lastName: string;
-  detalle: string;
-}
-
-const Data: Data[] = [
-  {name: 'Juan', lastName: 'Perez', detalle: 'detalle'},
-  {name: 'Juan', lastName: "Perez", detalle: 'detalle'},
-  {name: 'Juan', lastName: "Perez", detalle: 'detalle'},
-  {name: 'Juan', lastName: "Perez", detalle: 'detalle'},
-  {name: 'Juan', lastName: "Perez", detalle: 'detalle'},
-  {name: 'Juan', lastName: "Perez", detalle: 'detalle'},
-  {name: 'Juan', lastName: "Perez", detalle: 'detalle'},
-  {name: 'Juan', lastName: "Perez", detalle: 'detalle'},
-  {name: 'Juan', lastName: "Perez", detalle: 'detalle'},
-  {name: 'Juan', lastName: "Perez", detalle: 'detalle'},
-  {name: 'Juan', lastName: "Perez", detalle: 'detalle'},
-  {name: 'Juan', lastName: "Perez", detalle: 'detalle'},
-  {name: 'Juan', lastName: "Perez", detalle: 'detalle'},
-  {name: 'Juan', lastName: "Perez", detalle: 'detalle'},
-  {name: 'Juan', lastName: "Perez", detalle: 'detalle'}
-];
+import { data } from '../../core/user-data'
+import { Data } from '../../core/data'
 
 @Component({
   selector: 'app-user',
@@ -36,11 +14,12 @@ const Data: Data[] = [
 })
 export class UserView implements AfterViewInit{
   displayedColumns: string[] = ['name', 'lastName', 'detalle'];
-  dataSource = new MatTableDataSource<Data>(Data);
+  dataSource = new MatTableDataSource<Data>(data);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
+  
 }
