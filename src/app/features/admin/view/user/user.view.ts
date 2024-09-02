@@ -4,11 +4,12 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { RouterModule } from '@angular/router';
 import { userData } from '../../core/user-data'
 import { User } from '../../core/data'
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-user',
   standalone: true,
-  imports: [MatTableModule, RouterModule, MatPaginatorModule],
+  imports: [MatTableModule, RouterModule, MatPaginatorModule, MatButtonModule],
   templateUrl: './user.view.html',
   styleUrl: './user.view.scss'
 })

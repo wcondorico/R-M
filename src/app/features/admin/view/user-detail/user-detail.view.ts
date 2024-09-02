@@ -34,8 +34,6 @@ import { MatInputModule } from '@angular/material/input';
   styleUrl: './user-detail.view.scss',
 })
 export class UserDetailView implements OnInit {
-  hide = signal(true);
-
   private readonly route: ActivatedRoute = inject(ActivatedRoute);
 
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
@@ -103,8 +101,7 @@ export class UserDetailView implements OnInit {
     });
   }
 
-  saveData(event: MouseEvent) {
-    this.hide.set(!this.hide());
-    event.stopPropagation();
+  save(): void{
+
   }
 }

@@ -19,10 +19,23 @@
       background-color: #FDFBFF;
     }
 
-    &__paginator {
+    &__bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       margin: 15px 0;
-      font-size: 16px;
-      background-color: rgb(201, 212, 212);
+
+      &>button {
+        padding: 0 40px;
+        background-color: #D9D3FF;
+        color: black;
+        font-size: 16px;
+      }
+
+      &--paginator {
+        font-size: 16px;
+        background-color: rgb(201, 212, 212);
+      }
     }
   }
 }
