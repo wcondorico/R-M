@@ -2,8 +2,8 @@ import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { RouterModule } from '@angular/router';
-import { data } from '../../core/user-data'
-import { Data } from '../../core/data'
+import { userData } from '../../core/user-data'
+import { User } from '../../core/data'
 
 @Component({
   selector: 'app-user',
@@ -14,12 +14,12 @@ import { Data } from '../../core/data'
 })
 export class UserView implements AfterViewInit{
   displayedColumns: string[] = ['name', 'lastName', 'detalle'];
-  dataSource = new MatTableDataSource<Data>(data);
+  dataSource = new MatTableDataSource<User>(userData);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
-  
+
 }

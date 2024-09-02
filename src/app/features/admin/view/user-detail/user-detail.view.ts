@@ -1,22 +1,20 @@
-import { data } from '../../core/user-data';
-import { Data } from '../../core/data';
+import { User } from '../../core/data';
+import { userData } from '../../core/user-data';
 
-import { Component, computed, inject, model, OnInit, signal } from '@angular/core';
-import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
+import { FormControl, ReactiveFormsModule, FormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterModule } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import {
   MatAutocompleteModule,
   MatAutocompleteSelectedEvent,
 } from '@angular/material/autocomplete';
-import { MatInputModule } from '@angular/material/input';
 import { MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
-import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-user-detail',
@@ -57,14 +55,14 @@ export class UserDetailView implements OnInit {
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    const userData: Data | undefined = data.find((item) => item.id == id);
-    this.nameFormControl = new FormControl(userData?.name, [
+    const currentUserData: User | undefined = userData.find((item) => item.id == id);
+    this.nameFormControl = new FormControl(currentUserData?.name, [
       Validators.required,
     ]);
-    this.lastNameFormControl = new FormControl(userData?.lastName, [
+    this.lastNameFormControl = new FormControl(currentUserData?.lastName, [
       Validators.required,
     ]);
-    this.emailFormControl = new FormControl(userData?.email, [
+    this.emailFormControl = new FormControl(currentUserData?.email, [
       Validators.required,
       Validators.email,
     ]);
@@ -92,7 +90,6 @@ export class UserDetailView implements OnInit {
       roles.sort();
       return [...roles];
     })
-
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {

@@ -7,8 +7,22 @@
 
   .list {
     width: 100%;
+    height: 720px;
     background-color: rgb(201, 212, 212);
     border-radius: 20px;
     padding: 30px;
+
+    &__data {
+      height: 600px;
+      border-radius: 20px;
+      padding: 10px 30px;
+      background-color: #FDFBFF;
+    }
+
+    &__paginator {
+      margin: 15px 0;
+      font-size: 16px;
+      background-color: rgb(201, 212, 212);
+    }
   }
 }
