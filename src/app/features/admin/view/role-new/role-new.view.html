@@ -1,1 +1,39 @@
-<p>role-new works!</p>
+<div class="detail">
+  <div>
+    <mat-form-field class="detail__field">
+      <mat-label>Nombre del Rol</mat-label>
+      <input matInput type="text" [formControl]="nameFormControl"/>
+    </mat-form-field>
+  </div>
+
+  <mat-form-field>
+    <mat-label>Permisos del Rol</mat-label>
+    <mat-chip-grid #chipGrid>
+      @for (permission of permissionsSelected(); track $index) {
+        <mat-chip-row (removed)="remove(permission)">
+          {{permission}}
+          <button matChipRemove>
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+      }
+    </mat-chip-grid>
+    <input
+      placeholder="Nuevo permiso"
+      [(ngModel)]="currentPermission"
+      [matChipInputFor]="chipGrid"
+      [matAutocomplete]="auto"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      (matChipInputTokenEnd)="add($event)"
+    />
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+      @for (permission of filteredPermissions(); track permission) {
+        <mat-option [value]="permission">{{permission}}</mat-option>
+      }
+    </mat-autocomplete>
+  </mat-form-field>
+  <div class="detail__buttons">
+    <button mat-fab extended (click)="save()">Guardar</button>
+    <a mat-fab extended [routerLink]="['../role']">Cancelar</a>
+  </div>
+</div>

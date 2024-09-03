@@ -1,0 +1,30 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+
+  .detail {
+    background-color: rgb(201, 212, 212);
+    border-radius: 20px;
+    width: 350px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+
+    &__field {
+      width: 100%;
+    }
+
+    &__buttons {
+      display: flex;
+      justify-content: space-between;
+
+      &>* {
+        padding: 0 33px;
+      }
+    }
+  }
+
+ }
