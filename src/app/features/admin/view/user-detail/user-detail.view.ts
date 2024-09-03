@@ -2,13 +2,13 @@ import { User } from '../../core/data';
 import { userData } from '../../core/user-data';
 
 import { Component, computed, inject, OnInit, signal } from '@angular/core';
-import { FormControl, ReactiveFormsModule, FormsModule, Validators } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { ENTER } from '@angular/cdk/keycodes';
 import {
   MatAutocompleteModule,
   MatAutocompleteSelectedEvent,
@@ -36,7 +36,7 @@ import { MatInputModule } from '@angular/material/input';
 export class UserDetailView implements OnInit {
   private readonly route: ActivatedRoute = inject(ActivatedRoute);
 
-  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+  readonly separatorKeysCodes: number[] = [ENTER];
   readonly rolesSelected = signal<string[]>(['Rol_1']);
   readonly avaibleRoles = signal<string[]>(['Rol_2', 'Rol_3', 'Rol_4', 'Rol_5']);
   readonly currentRole = signal('');

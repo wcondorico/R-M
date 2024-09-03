@@ -17,6 +17,10 @@
       border-radius: 20px;
       padding: 10px 30px;
       background-color: #FDFBFF;
+
+      & a {
+        padding: 0 50px;
+      }
     }
 
     &__bottom {

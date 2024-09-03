@@ -15,21 +15,21 @@ export const adminRoutes: Routes = [
         loadComponent: () => import('./view/user/user.view').then(c => c.UserView)
       },
       {
-        path: 'role',
+        path: 'roles',
         loadComponent: () => import('./view/role/role.view').then(c => c.RoleView)
       }
     ]
   },
   {
-    path: 'user-detail/:id',
+    path: 'users/:id',
     loadComponent: () => import('./view/user-detail/user-detail.view').then(c => c.UserDetailView)
   },
   {
-    path: 'role-detail/:id',
+    path: 'roles/:id',
     loadComponent: () => import('./view/role-detail/role-detail.view').then(c => c.RoleDetailView)
   },
   {
-    path: 'role-new',
+    path: 'rolex/new',
     loadComponent: () => import('./view/role-new/role-new.view').then(c => c.RoleNewView)
   }
 ];
