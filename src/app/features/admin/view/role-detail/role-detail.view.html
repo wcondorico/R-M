@@ -32,5 +32,8 @@
       }
     </mat-autocomplete>
   </mat-form-field>
-  <button mat-fab extended (click)="save()">Guardar</button>
+  <div class="detail__buttons">
+    <button mat-fab extended (click)="save()">Guardar</button>
+    <a mat-fab extended [routerLink]="['../../role']">Cancelar</a>
+  </div>
 </div>
