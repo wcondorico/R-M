@@ -1,11 +1,11 @@
 <div class="admin">
   <a [routerLink]="'../admin'" class="admin__link">
-      Admin
+    Admin
   </a>
 
   <a [routerLink]="'../auth'" class="admin__link">
     Login
-</a>
+  </a>
 </div>
 
 <div class="container">
@@ -15,7 +15,7 @@
       <span class="radio__tittle">Género:</span>
       <mat-radio-group class="radio__group" [(ngModel)]="filterGender">
         @for (gender of gender; track gender) {
-        <mat-radio-button  class="radio__button" [value]="gender"><span>{{gender}}</span></mat-radio-button>
+        <mat-radio-button class="radio__button" [value]="gender"><span>{{gender}}</span></mat-radio-button>
         }
       </mat-radio-group>
     </div>
@@ -52,7 +52,8 @@
       <div class="search__logo">
         <mat-icon fontIcon="search" class="search__logo--icon"></mat-icon>
       </div>
-      <input type="text" class="search__text" placeholder="Buscar por nombre" (keyup)="searchByName()" [(ngModel)]="searchByNameInput" >
+      <input type="text" class="search__text" placeholder="Buscar por nombre" (keyup)="searchByName()"
+        [(ngModel)]="searchByNameInput">
       <div class="search__button">
         <button mat-fab extended (click)="applyFilters()">
           Buscar
